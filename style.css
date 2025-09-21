@@ -1361,9 +1361,9 @@ summary::marker {
 #footer {
   position: relative;
   width: 100%;
-  height: auto; /* Let content determine height */
-  min-height: 50vh; /* Set minimum height to 50% of viewport */
-  max-height: 50vh; /* Set maximum height to 50% of viewport */
+  height: auto;
+  min-height: 50vh;
+  max-height: 50vh;
   overflow: hidden;
   background-color: #111;
   padding: 2vw 10vw;
@@ -1376,7 +1376,7 @@ summary::marker {
 #footer-tsparticles {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 50%;
   top: 0;
   left: 0;
   z-index: 0;
@@ -1386,12 +1386,12 @@ summary::marker {
   position: relative;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 1rem; /* Reduce gap to save space */
+  gap: 1rem; 
   width: 100%;
   z-index: 1;
   margin-bottom: 1rem;
-  max-height: 35vh; /* Limit content height */
-  overflow-y: auto; /* Allow scrolling if content is too tall */
+  max-height: 35vh; 
+  overflow-y: auto; 
 }
 
 
@@ -1521,7 +1521,7 @@ summary::marker {
 
 .footer-bottom {
   padding-top: 1rem;
-  margin-top: auto; /* Push to bottom */
+  margin-top: auto; 
 }
 
 .copyright {

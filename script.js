@@ -150,17 +150,16 @@ function animateHeading() {
   // Split each letter into a span
   text.split("").forEach((char) => {
     const span = document.createElement("span");
-    span.textContent = char === " " ? "\u00A0" : char; // keep spaces
+    span.textContent = char === " " ? "\u00A0" : char;
     heading.appendChild(span);
   });
 
-  // Animate letters one by one
   gsap.to("#animated-heading span", {
     opacity: 1,
     x: 0,
     duration: 0.6,
     ease: "power3.out",
-    stagger: 0.1, // delay per letter
+    stagger: 0.1, 
   });
 }
 
@@ -198,8 +197,8 @@ loadingAnimation();
 document.addEventListener('DOMContentLoaded', () => {
     const spans = document.querySelectorAll('.parallax-element span');
   
-    const duration = 0.5;  // seconds for each letter animation
-    const gap = 0.01;       // pause between letters
+    const duration = 0.5; 
+    const gap = 0.01;       
   
     spans.forEach((span, i) => {
       span.style.animation = `pop ${duration}s cubic-bezier(0.22,1,0.36,1) forwards`;
@@ -207,23 +206,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
- // Replace your page1SomethingAnimation function with this:
 
  function page1SomethingAnimation() {
   const container = document.querySelector("#page1-something");
   
-  // Create background element if it doesn't exist
   let background = document.getElementById("page1-background");
   if (!background) {
     background = document.createElement("div");
     background.id = "page1-background";
     document.getElementById("page1").prepend(background);
   }
-  
-  // DON'T move the content to a new container - this breaks the flex layout
-  // Just add hover effects directly to the items
-  
-  // Add hover effect to items with data-image
+
   const items = container.querySelectorAll("h4[data-image]");
   items.forEach(function (item) {
     item.addEventListener("mouseenter", function () {
@@ -484,17 +477,17 @@ tsParticles.load("footer-tsparticles", {
 
 $(document).ready(function(){
   $('.brands-carousel').slick({
-      dots: true,             // keep dots
+      dots: true,            
       infinite: true,
       speed: 500,
-      slidesToShow: 3,        // number of slides visible in center
+      slidesToShow: 3,        
       slidesToScroll: 1,
       centerMode: true,
-      centerPadding: '25%',   // side slides partially visible
+      centerPadding: '25%',  
       focusOnSelect: true,
       autoplay: true,
       autoplaySpeed: 3000,
-      arrows: false,          // remove arrows
+      arrows: false,       
       responsive: [
           {
               breakpoint: 1024,
@@ -522,9 +515,7 @@ $(document).ready(function(){
 });
 
 
-// Fix GSAP errors - check if elements exist before animating
 function fixGSAPErrors() {
-  // Check if .brand elements exist before animating
   const brands = document.querySelectorAll('.brand');
   if (brands.length > 0) {
     gsap.from(".brand", {
@@ -539,7 +530,6 @@ function fixGSAPErrors() {
     });
   }
 
-  // Fix animateHeading function
   const heading = document.querySelector("#animated-heading");
   if (heading) {
     const text = heading.textContent;
@@ -560,7 +550,6 @@ function fixGSAPErrors() {
     });
   }
 
-  // Fix loader error
   const loader = document.getElementById("loader");
   if (loader) {
     window.addEventListener("load", () => {
@@ -571,7 +560,6 @@ function fixGSAPErrors() {
   }
 }
 
-// Replace placeholder image URL with a valid one
 function fixPlaceholderImage() {
   const placeholderImg = document.querySelector('img[src*="placeholder.com"]');
   if (placeholderImg) {
@@ -579,12 +567,10 @@ function fixPlaceholderImage() {
   }
 }
 
-// Call the fix functions when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
   fixGSAPErrors();
   fixPlaceholderImage();
   
-  // Your existing DOMContentLoaded code here
   const spans = document.querySelectorAll('.parallax-element span');
   const duration = 0.5;
   const gap = 0.01;
