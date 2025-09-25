@@ -58,6 +58,177 @@ function loadingAnimation() {
   });
 }
 
+  // Loader Animation
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+        document.getElementById('loader').style.opacity = '0';
+        setTimeout(function() {
+            document.getElementById('loader').style.display = 'none';
+        }, 700);
+    }, 4000);
+});
+
+// Text Animation for Hero Section
+function animateTextSpans() {
+    const textElements = document.querySelectorAll('.banner1, .banner2');
+    
+    textElements.forEach(element => {
+        const spans = element.querySelectorAll('span');
+        spans.forEach((span, index) => {
+            setTimeout(() => {
+                span.style.animation = `pop 0.8s ease-out forwards`;
+            }, index * 100);
+        });
+    });
+}
+
+// Call animation when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(animateTextSpans, 4500);
+});
+
+// Carousel Functionality
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-item');
+const totalSlides = slides.length;
+
+function updateCarousel() {
+    slides.forEach((slide, index) => {
+        slide.style.transform = `rotateY(${(index - currentSlide) * 72}deg) translateZ(350px)`;
+        slide.style.opacity = index === currentSlide ? '1' : '0.7';
+    });
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarousel();
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+}
+
+// Event listeners for carousel controls
+document.getElementById('nextBtn')?.addEventListener('click', nextSlide);
+document.getElementById('prevBtn')?.addEventListener('click', prevSlide);
+
+// Initialize carousel
+updateCarousel();
+
+// Auto-rotate carousel
+setInterval(nextSlide, 5000);
+
+// Brand Carousel with Slick
+$(document).ready(function(){
+    $('.brands-carousel').slick({
+        centerMode: true,
+        centerPadding: '60px',
+        slidesToShow: 3,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        arrows: false,
+        dots: false,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 1
+                }
+            }
+        ]
+    });
+});
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Page transitions and parallax effects
+window.addEventListener('scroll', function() {
+    const scrollTop = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.parallax-element');
+    
+    parallaxElements.forEach(element => {
+        const speed = element.dataset.scrollSpeed || 2;
+        const yPos = -(scrollTop / speed);
+        element.style.transform = `translateY(${yPos}px)`;
+    });
+});
+
+// Video hover effects
+document.querySelectorAll('.sec-right').forEach(section => {
+    const video = section.querySelector('video');
+    if (video) {
+        section.addEventListener('mouseenter', () => {
+            video.style.opacity = '1';
+            video.play();
+        });
+        
+        section.addEventListener('mouseleave', () => {
+            video.style.opacity = '0';
+            video.pause();
+        });
+    }
+});
+
+// Image hover effects for page1-something
+document.querySelectorAll('#page1-something h4[data-image]').forEach(element => {
+    element.addEventListener('mouseenter', function() {
+        const imageUrl = this.getAttribute('data-image');
+        const background = document.getElementById('page1-background');
+        background.style.backgroundImage = `url(${imageUrl})`;
+        background.style.opacity = '0.3';
+    });
+    
+    element.addEventListener('mouseleave', function() {
+        const background = document.getElementById('page1-background');
+        background.style.opacity = '0';
+    });
+});
+
+// Newsletter form submission
+document.querySelector('.newsletter-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = this.querySelector('.newsletter-input').value;
+    if (email) {
+        alert('Thank you for subscribing!');
+        this.reset();
+    }
+});
+
+// Add intersection observer for animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+// Observe all sections for animation
+document.querySelectorAll('.section, .footer-col').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(50px)';
+    el.style.transition = 'all 0.8s ease';
+    observer.observe(el);
+});
+
 function page2Animation() {
   var rightElems = document.querySelectorAll(".right-elem");
 
